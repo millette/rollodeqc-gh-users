@@ -28,6 +28,11 @@ Default: `false`
 
 Lorem ipsum.
 
+## Dependencies
+* gh-user
+* rate-limit-promise
+* rollodeqc-gh-search-users-all
+* rollodeqc-gh-utils
 
 ## License
 AGPL-v3 © [Robin Millette](http://robin.millette.info)
