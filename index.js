@@ -28,24 +28,23 @@ const rateLimit = require('rate-limit-promise')
 const utils = require('rollodeqc-gh-utils')
 const allUsers = require('rollodeqc-gh-search-users-all')
 
+let limiter
+
+const limitedQuery = (i) => limiter()
+  .then(() => ghUser(i))
+  .then((x) => utils.chosenFields(x))
+
 module.exports = (query, store) => {
+  utils.rateLimit()
+    .then((rl) => { limiter = rateLimit(5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining)) })
+
   if (typeof store !== 'object') { store = {} }
   return allUsers(query)
   .then((results) => results && results.items ? results.items : [])
-  .then((items) => items.filter((i) =>
-    i && i.type === 'User' && i.login && !store[i.login])
-      .map((i) => i.login).sort()
-  )
-  .then((logins) => utils.rateLimit()
-    .then((rl) => {
-      const limit = rateLimit(
-        5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining)
-      )
-      return Promise.all(logins.map((i) => limit().then(() => ghUser(i))))
-    })
-  )
+  .then((items) => items.filter((i) => i && i.type === 'User' && i.login && !store[i.login]).map((i) => i.login))
+  .then((logins) => Promise.all(logins.map((i) => limitedQuery(i))))
   .then((logins) => {
-    logins.forEach((i) => { store[i.login] = utils.chosenFields(i) })
+    logins.forEach((i) => { store[i.login] = i })
     return store
   })
 }

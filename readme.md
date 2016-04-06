@@ -7,6 +7,9 @@ $ npm install --save rollodeqc-gh-users
 ```
 
 ## Usage
+
+### FIXME: readme not up to date
+
 ```js
 const rollodeqcGhUsers = require('rollodeqc-gh-users');
 
