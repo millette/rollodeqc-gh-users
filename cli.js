@@ -23,8 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const fetchUsers = require('./')
 const meow = require('meow')
 
-let store = require('./tremblay.json')
-// let store = {}
+// let store = require('./tremblay.json')
+let store = {}
 
 const cli = meow([
   'Usage',

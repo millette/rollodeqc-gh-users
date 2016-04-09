@@ -21,18 +21,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 'use strict'
 
 // npm
-const ghUser = require('gh-user')
+const ghGot = require('gh-got')
 const rateLimit = require('rate-limit-promise')
 
 // own
 const utils = require('rollodeqc-gh-utils')
 const allUsers = require('rollodeqc-gh-search-users-all')
+const fetchUser = require('rollodeqc-gh-user')
 
 let limiter
 
-const limitedQuery = (i) => limiter()
-  .then(() => ghUser(i))
-  .then((x) => utils.chosenFields(x))
+const ghUser2 = function (z) {
+  return limiter()
+    .then(() => ghGot('users/' + z))
+    .then((u) => {
+      const o = utils.chosenFields(u.body)
+      o.headers = utils.chosenHeaders(u.headers)
+      return o
+    })
+}
 
 module.exports = (query, store) => {
   utils.rateLimit()
@@ -42,7 +49,7 @@ module.exports = (query, store) => {
   return allUsers(query)
   .then((results) => results && results.items ? results.items : [])
   .then((items) => items.filter((i) => i && i.type === 'User' && i.login && !store[i.login]).map((i) => i.login))
-  .then((logins) => Promise.all(logins.map((i) => limitedQuery(i))))
+  .then((logins) => Promise.all(logins.map((i) => ghUser2(i))))
   .then((logins) => {
     logins.forEach((i) => { store[i.login] = i })
     return store

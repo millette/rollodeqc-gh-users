@@ -30,11 +30,12 @@
     "info"
   ],
   "dependencies": {
-    "gh-user": "^2.1.0",
+    "gh-got": "^3.0.0",
     "meow": "^3.7.0",
     "rate-limit-promise": "^1.0.2",
-    "rollodeqc-gh-search-users-all": "^0.2.1",
-    "rollodeqc-gh-utils": "^0.2.0"
+    "rollodeqc-gh-search-users-all": "^0.3.0",
+    "rollodeqc-gh-user": "0.0.1",
+    "rollodeqc-gh-utils": "^0.3.0"
   },
   "devDependencies": {
     "ava": "^0.12.0",
