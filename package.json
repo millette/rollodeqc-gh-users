@@ -1,6 +1,6 @@
 {
   "name": "rollodeqc-gh-users",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "RoLLodeQc utility to fetch all GitHub users according to search.",
   "license": "AGPL-3.0",
   "repository": "millette/rollodeqc-gh-users",
@@ -32,7 +32,8 @@
   "dependencies": {
     "meow": "^3.7.0",
     "rollodeqc-gh-search-users-all": "^0.3.0",
-    "rollodeqc-gh-user": "0.0.1"
+    "rollodeqc-gh-user": "0.0.1",
+    "rollodeqc-gh-utils": "^0.3.0"
   },
   "devDependencies": {
     "ava": "^0.12.0",
