@@ -48,7 +48,7 @@ function isDone (wait) {
 }
 
 // TODO: search by location, etc.
-// fetchUsers({ o: { location: 'joliette' } })
+// fetchUsers({ o: { location: 'saguenay' } })
 fetchUsers(cli.input[0], store)
   .then((ack) => {
     console.log(JSON.stringify(ack, null, ' '))

@@ -1,5 +1,4 @@
 # rollodeqc-gh-users [![Build Status](https://travis-ci.org/millette/rollodeqc-gh-users.svg?branch=master)](https://travis-ci.org/millette/rollodeqc-gh-users)
-
 > RoLLodeQc utility to fetch all GitHub users according to search.
 
 ## Install
