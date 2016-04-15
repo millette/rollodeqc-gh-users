@@ -1,4 +1,4 @@
-# rollodeqc-gh-users [![Build Status](https://travis-ci.org/millette/rollodeqc-gh-users.svg?branch=master)](https://travis-ci.org/millette/rollodeqc-gh-users)
+# rollodeqc-gh-users [![Build Status](https://travis-ci.org/millette/rollodeqc-gh-users.svg?branch=master)](https://travis-ci.org/millette/rollodeqc-gh-users) [![Coverage Status](https://coveralls.io/repos/github/millette/rollodeqc-gh-users/badge.svg?branch=master)](https://coveralls.io/github/millette/rollodeqc-gh-users?branch=master)
 > RoLLodeQc utility to fetch all GitHub users according to search.
 
 ## Install
