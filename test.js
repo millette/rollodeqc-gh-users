@@ -5,7 +5,7 @@ import fn from './'
 
 test('acc', async t => {
   let store = await fn('tremblay')
-  t.is(Object.keys(store).length, 164)
+  t.is(Object.keys(store).length, 165)
   store = await fn('veronique', store)
-  t.is(Object.keys(store).length, 228)
+  t.is(Object.keys(store).length, 232)
 })
