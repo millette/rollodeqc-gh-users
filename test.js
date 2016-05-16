@@ -7,5 +7,5 @@ test('acc', async t => {
   let store = await fn('tremblay')
   t.is(Object.keys(store).length, 166)
   store = await fn('veronique', store)
-  t.is(Object.keys(store).length, 235)
+  t.is(Object.keys(store).length, 70)
 })

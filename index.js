@@ -33,12 +33,19 @@ utils.rateLimit()
 
 module.exports = (query, store) => {
   if (typeof store !== 'object') { store = {} }
+  let wants = []
   return allUsers(query)
-  .then((results) => results && results.items ? results.items : [])
-  .then((items) => items.filter((i) => i && i.login && !store[i.login]).map((i) => i.login))
-  .then((logins) => Promise.all(logins.map((i) => fetchUser(i, store))))
-  .then((logins) => {
-    logins.forEach((i) => { store[i.login] = i })
-    return store
-  })
+    .then((results) => results && results.items ? results.items : [])
+    .then((items) => {
+      wants = items.map((u) => u.login)
+      return items
+    })
+    .then((items) => items.filter((i) => i && i.login && !store[i.login]).map((i) => i.login))
+    .then((logins) => Promise.all(logins.map((i) => fetchUser(i, store))))
+    .then((logins) => {
+      logins.forEach((i) => { store[i.login] = i })
+      const resp = []
+      wants.forEach((login) => { resp.push(store[login]) })
+      return resp
+    })
 }
