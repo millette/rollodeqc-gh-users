@@ -29,14 +29,13 @@ utils.rateLimit()
   .then((rl) => {
     const l2 = Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining)
     fetchUser.setLimiter(5, l2)
-    // console.log('limiter set to 5,', l2)
   })
 
 module.exports = (query, store) => {
   if (typeof store !== 'object') { store = {} }
   return allUsers(query)
   .then((results) => results && results.items ? results.items : [])
-  .then((items) => items.filter((i) => i && i.type === 'User' && i.login && !store[i.login]).map((i) => i.login))
+  .then((items) => items.filter((i) => i && i.login && !store[i.login]).map((i) => i.login))
   .then((logins) => Promise.all(logins.map((i) => fetchUser(i, store))))
   .then((logins) => {
     logins.forEach((i) => { store[i.login] = i })

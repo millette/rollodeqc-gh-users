@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+0 > 1 // see https://github.com/babel/babel-eslint/issues/163
+
 /*
 RoLLodeQc utility to fetch all GitHub users according to search.
 
@@ -23,33 +25,51 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const fetchUsers = require('./')
 const meow = require('meow')
 
-// let store = require('./tremblay.json')
-let store = {}
+var store = {}
 
 const cli = meow([
   'Usage',
-  '  $ ok [input]',
+  '  $ rollodeqc-gh-users [input]',
   '',
   'Options',
-  '  --foo  Lorem ipsum. [Default: false]',
+  '  -t',
+  '  --type Use Specify "user" or "org", otherwise search for any.',
+  '',
+  '  -l',
+  '  --location Search location; supply as many times as needed.',
   '',
   'Examples',
-  '  $ ok',
+  '  $ rollodeqc-gh-users',
   '  unicorns & rainbows',
-  '  $ ok ponies',
+  '  $ rollodeqc-gh-users ponies',
   '  ponies & rainbows'
-])
+], {
+  alias: { t: 'type', l: 'location' },
+  string: ['type', 'location']
+})
 
-let running = true
+var running = true
 
 function isDone (wait) {
   if (typeof wait !== 'number') { wait = 100 }
   setTimeout(() => { if (running) { isDone(wait) } }, wait)
 }
 
-// TODO: search by location, etc.
-// fetchUsers({ o: { location: 'saguenay' } })
-fetchUsers(cli.input[0], store)
+var query = {
+  o: { string: cli.input.join(' ') },
+  order: 'asc',
+  sort: 'joined'
+}
+
+if (cli.flags.type) {
+  query.o.type = cli.flags.type
+}
+
+if (cli.flags.location) {
+  query.o.location = cli.flags.location
+}
+
+fetchUsers(query, store)
   .then((ack) => {
     console.log(JSON.stringify(ack, null, ' '))
     running = false
