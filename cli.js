@@ -25,8 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const fetchUsers = require('./')
 const meow = require('meow')
 
-var store = {}
-
 const cli = meow([
   'Usage',
   '  $ rollodeqc-gh-users [input]',
@@ -38,14 +36,17 @@ const cli = meow([
   '  -l',
   '  --location Search location; supply as many times as needed.',
   '',
+  '  -c',
+  '  --cache JSON file holding cached values.',
+  '',
   'Examples',
   '  $ rollodeqc-gh-users',
   '  unicorns & rainbows',
   '  $ rollodeqc-gh-users ponies',
   '  ponies & rainbows'
 ], {
-  alias: { t: 'type', l: 'location' },
-  string: ['type', 'location']
+  alias: { c: 'cache', t: 'type', l: 'location' },
+  string: ['cache', 'type', 'location']
 })
 
 var running = true
@@ -69,7 +70,9 @@ if (cli.flags.location) {
   query.o.location = cli.flags.location
 }
 
-fetchUsers(query, store)
+const cache = cli.flags.cache ? require('./' + cli.flags.cache) : {}
+
+fetchUsers(query, cache)
   .then((ack) => {
     console.log(JSON.stringify(ack, null, ' '))
     running = false
