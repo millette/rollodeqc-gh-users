@@ -1,2 +1,7 @@
 node_modules
 .nyc_output
+bad-jsons
+orgs-qc.json
+sherb.json
+sherb2.json
+
