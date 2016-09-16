@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-0 > 1 // see https://github.com/babel/babel-eslint/issues/163
 
 /*
 RoLLodeQc utility to fetch all GitHub users according to search.
