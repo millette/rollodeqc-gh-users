@@ -36,7 +36,8 @@
     "meow": "^3.7.0",
     "rollodeqc-gh-search-users-all": "^0.5.2",
     "rollodeqc-gh-user": "^0.2.1",
-    "rollodeqc-gh-utils": "^0.3.4"
+    "rollodeqc-gh-utils": "^0.3.4",
+    "update-notifier": "^1.0.2"
   },
   "devDependencies": {
     "ava": "^0.16.0",
