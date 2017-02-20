@@ -34,13 +34,13 @@
   ],
   "dependencies": {
     "meow": "^3.7.0",
-    "rollodeqc-gh-search-users-all": "^0.5.3",
+    "rollodeqc-gh-search-users-all": "^0.6.0",
     "rollodeqc-gh-user": "^0.3.0",
     "rollodeqc-gh-utils": "^0.3.4",
-    "update-notifier": "^1.0.3"
+    "update-notifier": "^2.1.0"
   },
   "devDependencies": {
-    "ava": "^0.18.1",
+    "ava": "^0.18.2",
     "babel-eslint": "^7.1.1",
     "coveralls": "^2.11.16",
     "nyc": "^10.1.2",
