@@ -27,7 +27,7 @@ const utils = require('rollodeqc-gh-utils')
 
 utils.rateLimit()
   .then((rl) => {
-    const l2 = Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining)
+    const l2 = Math.ceil(5 * ((1000 * rl.rate.reset) - Date.now()) / rl.rate.remaining)
     fetchUser.setLimiter(5, l2)
   })
 
