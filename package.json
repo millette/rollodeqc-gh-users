@@ -37,7 +37,7 @@
     "rollodeqc-gh-search-users-all": "^0.6.0",
     "rollodeqc-gh-user": "^0.4.0",
     "rollodeqc-gh-utils": "^0.3.4",
-    "update-notifier": "^2.1.0"
+    "update-notifier": "^2.2.0"
   },
   "devDependencies": {
     "ava": "^0.18.2",
