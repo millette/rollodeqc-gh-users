@@ -8,7 +8,7 @@
 The cli now uses [update-notifier][] to let the user know about updates to this program.
 
 Users have the ability to opt-out of the update notifier by changing
-the optOut property to true in ~/.config/configstore/update-notifier-rollodeqc-gh-user-streak.json.
+the optOut property to true in ~/.config/configstore/update-notifier-rollodeqc-gh-users.json.
 The path is available in notifier.config.path.
 
 Users can also opt-out by setting the environment variable NO_UPDATE_NOTIFIER
