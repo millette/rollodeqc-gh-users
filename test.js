@@ -1,8 +1,10 @@
 'use strict'
+
 import test from 'ava'
 import fn from './'
 
 test('acc', async t => {
+  t.timeout(500000)
   let store = await fn('tremblay')
   t.truthy(Object.keys(store).length > 200)
   t.truthy(Object.keys(store).length < 400)
